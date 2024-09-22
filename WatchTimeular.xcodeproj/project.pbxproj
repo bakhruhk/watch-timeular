@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EE57EDB82C9A617300454F00 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE57EDB72C9A616C00454F00 /* ExtensionDelegate.swift */; };
+		EE63D9D62C94E3D10046DECE /* WatchTimeular Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EE63D9D52C94E3D10046DECE /* WatchTimeular Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EE63D9DB2C94E3D10046DECE /* WatchTimeularApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63D9DA2C94E3D10046DECE /* WatchTimeularApp.swift */; };
+		EE63D9DD2C94E3D10046DECE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63D9DC2C94E3D10046DECE /* ContentView.swift */; };
+		EE63D9DF2C94E3D30046DECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE63D9DE2C94E3D30046DECE /* Assets.xcassets */; };
+		EE63D9E22C94E3D30046DECE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE63D9E12C94E3D30046DECE /* Preview Assets.xcassets */; };
+		EE63D9ED2C9731490046DECE /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63D9EC2C9731490046DECE /* AuthViewModel.swift */; };
+		EE63D9EF2C97BA240046DECE /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63D9EE2C97BA240046DECE /* ActivityViewModel.swift */; };
+		EE63D9F12C97D6220046DECE /* TimeEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE63D9F02C97D6220046DECE /* TimeEntryViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EE63D9D72C94E3D10046DECE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE63D9C92C94E3D10046DECE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE63D9D42C94E3D10046DECE;
+			remoteInfo = "WatchTimeular Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EE63D9E82C94E3D30046DECE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				EE63D9D62C94E3D10046DECE /* WatchTimeular Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EE57EDB72C9A616C00454F00 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		EE63D9CF2C94E3D10046DECE /* WatchTimeular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTimeular.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE63D9D52C94E3D10046DECE /* WatchTimeular Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchTimeular Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE63D9DA2C94E3D10046DECE /* WatchTimeularApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimeularApp.swift; sourceTree = "<group>"; };
+		EE63D9DC2C94E3D10046DECE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EE63D9DE2C94E3D30046DECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE63D9E12C94E3D30046DECE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EE63D9EC2C9731490046DECE /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		EE63D9EE2C97BA240046DECE /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		EE63D9F02C97D6220046DECE /* TimeEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EE63D9D22C94E3D10046DECE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EE63D9C82C94E3D10046DECE = {
+			isa = PBXGroup;
+			children = (
+				EE63D9D92C94E3D10046DECE /* WatchTimeular Watch App */,
+				EE63D9D02C94E3D10046DECE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EE63D9D02C94E3D10046DECE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EE63D9CF2C94E3D10046DECE /* WatchTimeular.app */,
+				EE63D9D52C94E3D10046DECE /* WatchTimeular Watch App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EE63D9D92C94E3D10046DECE /* WatchTimeular Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				EE57EDB72C9A616C00454F00 /* ExtensionDelegate.swift */,
+				EE63D9DA2C94E3D10046DECE /* WatchTimeularApp.swift */,
+				EE63D9DC2C94E3D10046DECE /* ContentView.swift */,
+				EE63D9F02C97D6220046DECE /* TimeEntryViewModel.swift */,
+				EE63D9EC2C9731490046DECE /* AuthViewModel.swift */,
+				EE63D9EE2C97BA240046DECE /* ActivityViewModel.swift */,
+				EE63D9DE2C94E3D30046DECE /* Assets.xcassets */,
+				EE63D9E02C94E3D30046DECE /* Preview Content */,
+			);
+			path = "WatchTimeular Watch App";
+			sourceTree = "<group>";
+		};
+		EE63D9E02C94E3D30046DECE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EE63D9E12C94E3D30046DECE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EE63D9CE2C94E3D10046DECE /* WatchTimeular */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE63D9E92C94E3D30046DECE /* Build configuration list for PBXNativeTarget "WatchTimeular" */;
+			buildPhases = (
+				EE63D9CD2C94E3D10046DECE /* Resources */,
+				EE63D9E82C94E3D30046DECE /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE63D9D82C94E3D10046DECE /* PBXTargetDependency */,
+			);
+			name = WatchTimeular;
+			productName = WatchTimeular;
+			productReference = EE63D9CF2C94E3D10046DECE /* WatchTimeular.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		EE63D9D42C94E3D10046DECE /* WatchTimeular Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE63D9E52C94E3D30046DECE /* Build configuration list for PBXNativeTarget "WatchTimeular Watch App" */;
+			buildPhases = (
+				EE63D9D12C94E3D10046DECE /* Sources */,
+				EE63D9D22C94E3D10046DECE /* Frameworks */,
+				EE63D9D32C94E3D10046DECE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchTimeular Watch App";
+			productName = "WatchTimeular Watch App";
+			productReference = EE63D9D52C94E3D10046DECE /* WatchTimeular Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EE63D9C92C94E3D10046DECE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					EE63D9CE2C94E3D10046DECE = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					EE63D9D42C94E3D10046DECE = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = EE63D9CC2C94E3D10046DECE /* Build configuration list for PBXProject "WatchTimeular" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EE63D9C82C94E3D10046DECE;
+			productRefGroup = EE63D9D02C94E3D10046DECE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EE63D9CE2C94E3D10046DECE /* WatchTimeular */,
+				EE63D9D42C94E3D10046DECE /* WatchTimeular Watch App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EE63D9CD2C94E3D10046DECE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE63D9D32C94E3D10046DECE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE63D9E22C94E3D30046DECE /* Preview Assets.xcassets in Resources */,
+				EE63D9DF2C94E3D30046DECE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EE63D9D12C94E3D10046DECE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE63D9F12C97D6220046DECE /* TimeEntryViewModel.swift in Sources */,
+				EE63D9DD2C94E3D10046DECE /* ContentView.swift in Sources */,
+				EE57EDB82C9A617300454F00 /* ExtensionDelegate.swift in Sources */,
+				EE63D9DB2C94E3D10046DECE /* WatchTimeularApp.swift in Sources */,
+				EE63D9ED2C9731490046DECE /* AuthViewModel.swift in Sources */,
+				EE63D9EF2C97BA240046DECE /* ActivityViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EE63D9D82C94E3D10046DECE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE63D9D42C94E3D10046DECE /* WatchTimeular Watch App */;
+			targetProxy = EE63D9D72C94E3D10046DECE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EE63D9E32C94E3D30046DECE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EE63D9E42C94E3D30046DECE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		EE63D9E62C94E3D30046DECE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchTimeular Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 3W3YD4WPSM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchTimeular;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bakhruhk.WatchTimeular.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		EE63D9E72C94E3D30046DECE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchTimeular Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 3W3YD4WPSM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchTimeular;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bakhruhk.WatchTimeular.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+		EE63D9EA2C94E3D30046DECE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W3YD4WPSM;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchTimeular;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bakhruhk.WatchTimeular;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		EE63D9EB2C94E3D30046DECE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3W3YD4WPSM;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchTimeular;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bakhruhk.WatchTimeular;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EE63D9CC2C94E3D10046DECE /* Build configuration list for PBXProject "WatchTimeular" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE63D9E32C94E3D30046DECE /* Debug */,
+				EE63D9E42C94E3D30046DECE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE63D9E52C94E3D30046DECE /* Build configuration list for PBXNativeTarget "WatchTimeular Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE63D9E62C94E3D30046DECE /* Debug */,
+				EE63D9E72C94E3D30046DECE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE63D9E92C94E3D30046DECE /* Build configuration list for PBXNativeTarget "WatchTimeular" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE63D9EA2C94E3D30046DECE /* Debug */,
+				EE63D9EB2C94E3D30046DECE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EE63D9C92C94E3D10046DECE /* Project object */;
+}

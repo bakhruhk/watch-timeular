@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1600"
-   version = "2.2">
+   wasCreatedForAppExtension = "YES"
+   version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
       <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EEE055292CA21B470037410E"
+               BuildableName = "WatchComplicationExtensionExtension.appex"
+               BlueprintName = "WatchComplicationExtensionExtension"
+               ReferencedContainer = "container:WatchTimeular.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -35,29 +50,6 @@
                ReferencedContainer = "container:WatchTimeular.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <AutocreatedTestPlanReference>
-            </AutocreatedTestPlanReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EEE055292CA21B470037410E"
-               BuildableName = "WatchComplicationExtensionExtension.appex"
-               BlueprintName = "WatchComplicationExtensionExtension"
-               ReferencedContainer = "container:WatchTimeular.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -82,16 +74,27 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EEE055292CA21B470037410E"
+            BuildableName = "WatchComplicationExtensionExtension.appex"
+            BlueprintName = "WatchComplicationExtensionExtension"
+            ReferencedContainer = "container:WatchTimeular.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE63D9D42C94E3D10046DECE"
@@ -99,21 +102,21 @@
             BlueprintName = "WatchTimeular Watch App"
             ReferencedContainer = "container:WatchTimeular.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "API_KEY"
-            value = "MTMwNTIyXzc3NjIyNTU2ZWJlODRiMDBiNDgwYzk3MjQ2NzY4ODRm"
+            key = "_XCWidgetKind"
+            value = ""
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "API_SECRET"
-            value = "ZWU5NThiNjNkMGE2NDlhOGFmZDNlNDg2MTUxMzJjNWI"
+            key = "_XCWidgetDefaultView"
+            value = "timeline"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "IDEPreferLogStreaming"
-            value = "YES"
+            key = "_XCWidgetFamily"
+            value = "systemMedium"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -128,9 +131,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EE63D9D42C94E3D10046DECE"
-            BuildableName = "WatchTimeular Watch App.app"
-            BlueprintName = "WatchTimeular Watch App"
+            BlueprintIdentifier = "EEE055292CA21B470037410E"
+            BuildableName = "WatchComplicationExtensionExtension.appex"
+            BlueprintName = "WatchComplicationExtensionExtension"
             ReferencedContainer = "container:WatchTimeular.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

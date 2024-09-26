@@ -10,68 +10,132 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject private var authViewModel: AuthViewModel
     @StateObject private var activityViewModel = ActivityViewModel()
+    @Binding var selectedTab: Int
     
     var body: some View {
-        NavigationView {
-            VStack {
-                if authViewModel.isLoading {
-                    ProgressView("Loading...")
-                        .padding()
-                }
-                else if authViewModel.tokenFetchFailed {
-                    VStack {
-                        Text("Failed to load activities. Please try again.")
-                            .foregroundColor(.red)
+        TabView(selection: $selectedTab){
+            NavigationView {
+                VStack {
+                    if authViewModel.isLoading {
+                        ProgressView("Loading...")
                             .padding()
-                        
-                        Button(action: {
-                            Task {
-                                await authViewModel.refreshToken()
-                            }
-                        }) {
-                            Text("Retry")
-                                .foregroundColor(.blue)
+                    }
+                    else if authViewModel.tokenFetchFailed {
+                        VStack {
+                            Text("Failed to load activities. Please try again.")
+                                .foregroundColor(.red)
                                 .padding()
+                            
+                            Button(action: {
+                                Task {
+                                    await authViewModel.refreshToken()
+                                }
+                            }) {
+                                Text("Retry")
+                                    .foregroundColor(.blue)
+                                    .padding()
+                            }
                         }
                     }
-                }
-                else if !authViewModel.token.isEmpty {
-                    List {
-                        ForEach(activityViewModel.activities, id: \.id) { activity in
-                            NavigationLink(destination: ActivityDetailView(activity: activity)) {
-                                HStack {
-                                    Text(activity.name).padding()
-                                    Spacer()
-                                    if let col = Color(hex: activity.color){
-                                        Rectangle()
-                                            .fill(col)
-                                            .frame(width: 20, height: 20)
-                                            .cornerRadius(3)
+                    else if !authViewModel.token.isEmpty {
+                        List {
+                            ForEach(activityViewModel.activities, id: \.id) { activity in
+                                NavigationLink(destination: ActivityDetailView(activity: activity)) {
+                                    HStack {
+                                        Text(activity.name).padding()
+                                        Spacer()
+                                        if let col = Color(hex: activity.color){
+                                            Rectangle()
+                                                .fill(col)
+                                                .frame(width: 20, height: 20)
+                                                .cornerRadius(3)
+                                        }
                                     }
                                 }
                             }
                         }
+                        .onAppear {
+                            Task{
+                                let success = await activityViewModel.fetchActivities(token: authViewModel.token)
+                                if !success {
+                                    authViewModel.token = ""
+                                }
+                            }
+                        }
                     }
+                    else {
+                        Text("Loading...")
+                            .onAppear {
+                                Task {
+                                    authViewModel.resetState()
+                                    await authViewModel.refreshToken()
+                                }
+                            }
+                    }
+                }
+                .navigationTitle("Activities")
+            }
+            .tabItem {
+                Label("Activities", systemImage: "list.bullet")
+            }
+            .tag(0)
+            TotalTimeView()
+                .tabItem {
+                    Label("Total Time", systemImage: "clock")
+                }
+                .tag(1)
+        }
+    }
+}
+
+struct TotalTimeView: View {
+    @EnvironmentObject private var authViewModel: AuthViewModel
+    @StateObject private var timeEntryViewModel = TimeEntryViewModel()
+    
+    var body: some View {
+        if authViewModel.isLoading {
+            ProgressView("Loading...")
+                .padding()
+        }
+        else if authViewModel.tokenFetchFailed {
+            VStack {
+                Text("Failed to load total time.")
+                    .foregroundColor(.red)
+                    .padding()
+                
+                Button(action: {
+                    Task {
+                        await authViewModel.refreshToken()
+                    }
+                }) {
+                    Text("Retry")
+                        .foregroundColor(.blue)
+                        .padding()
+                }
+            }
+        }
+        else if !authViewModel.token.isEmpty {
+            VStack{
+                Text("Time Tracked Today:")
+                Text(timeEntryViewModel.totalTimeToday)
                     .onAppear {
-                        Task{
-                            let success = await activityViewModel.fetchActivities(token: authViewModel.token)
+                        Task {
+                            let success = await timeEntryViewModel.fetchTotalTime(token: authViewModel.token)
                             if !success {
                                 authViewModel.token = ""
                             }
                         }
                     }
-                }
-                else {
-                    Text("Loading...")
-                        .onAppear {
-                            Task {
-                                authViewModel.resetState()
-                                await authViewModel.refreshToken()
-                            }
-                        }
-                }
             }
-            .navigationTitle("Activities")
+        }
+        else {
+            Text("Loading...")
+                .onAppear {
+                    Task {
+                        authViewModel.resetState()
+                        await authViewModel.refreshToken()
+                    }
+                }
         }
     }
 }
@@ -108,14 +172,11 @@ struct ActivityDetailView: View {
         }
         .onAppear(){
             NotificationCenter.default.addObserver(forName: .didBecomeActive, object: nil, queue: .main) { _ in
-                    updateElapsedSeconds()
+                updateElapsedSeconds()
             }
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self, name: .didBecomeActive, object: nil)
-            if active {
-                stopTracking() // tracking should stop if user navigates away from activity view
-            }
         }
     }
     
@@ -134,10 +195,7 @@ struct ActivityDetailView: View {
         active = false
         timer?.invalidate()
         timer = nil
-        
-        let timeLogged = formatTime(elapsedSeconds)
-        print(timeLogged)
-        
+    
         if let startTime = startTime {
             Task {
                 authViewModel.resetState()
@@ -145,7 +203,11 @@ struct ActivityDetailView: View {
                 let isTokenValid = !authViewModel.tokenFetchFailed
                 
                 if isTokenValid {
-                    timeEntryViewModel.createTimeEntry(activityId: activity.id, startedAt: startTime, stoppedAt: Date(), note: "", token: authViewModel.token)
+                    await timeEntryViewModel.createTimeEntry(activityId: activity.id, startedAt: startTime, stoppedAt: Date(), note: "", token: authViewModel.token)
+                    let updatedTotalTimeSuccess = await timeEntryViewModel.fetchTotalTime(token: authViewModel.token)
+                    if !updatedTotalTimeSuccess{
+                        print("Failed to update total time after logging entry.")
+                    }
                 } else {
                     print("Failed to refresh token. Cannot create time entry.")
                 }
@@ -188,11 +250,4 @@ extension Color {
 
 extension Notification.Name {
     static let didBecomeActive = Notification.Name("didBecomeActive")
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .environmentObject(AuthViewModel())
-    }
 }

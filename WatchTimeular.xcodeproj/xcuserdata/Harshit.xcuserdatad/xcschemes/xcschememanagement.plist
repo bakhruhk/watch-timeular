@@ -4,6 +4,23 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CornerComplicationExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>SharedDataModel.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>WatchComplicationExtensionExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>WatchTimeular Watch App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +35,16 @@
 			<true/>
 		</dict>
 		<key>EE63D9D42C94E3D10046DECE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EEE055112CA1D7ED0037410E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EEE055292CA21B470037410E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>WKAppBundleIdentifier</key>
+			<string>com.bakhruhk.WatchTimeular.watchkitapp</string>
+			<key>WKComplicationSupportedFamilies</key>
+			<array>
+				<string>CLKComplicationFamilyCircular
+            &lt;string&gt;CLKComplicationFamilyModularSmall&lt;/string&gt;
+            &lt;string&gt;CLKComplicationFamilyModularLarge&lt;/string&gt;
+            &lt;string&gt;CLKComplicationFamilyUtilitarianSmall&lt;/string&gt;
+            &lt;string&gt;CLKComplicationFamilyUtilitarianLarge&lt;/string&gt;
+            &lt;string&gt;CLKComplicationFamilyExtraLarge&lt;/string&gt;
+            &lt;string&gt;CLKComplicationFamilyGraphicCorner&lt;/string&gt;
+            &lt;string&gt;CLKComplicationFamilyGraphicCircular&lt;/string&gt;
+            &lt;string&gt;CLKComplicationFamilyGraphicRectangular&lt;/string&gt;</string>
+				<string>CLKComplicationFamilyModularSmall</string>
+				<string>CLKComplicationFamilyModularLarge</string>
+				<string>CLKComplicationFamilyUtilitarianSmall</string>
+				<string>CLKComplicationFamilyUtilitarianLarge</string>
+				<string>CLKComplicationFamilyExtraLarge</string>
+				<string>CLKComplicationFamilyGraphicCorner</string>
+				<string>CLKComplicationFamilyGraphicCircular</string>
+				<string>CLKComplicationFamilyGraphicRectangular</string>
+			</array>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.widgetkit-extension</string>
+	</dict>
+</dict>
+</plist>

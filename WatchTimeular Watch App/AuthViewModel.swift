@@ -12,6 +12,9 @@ class AuthViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var tokenFetchFailed: Bool = false
     
+    private var isRefreshing = false
+    private var lastRefreshTime: Date?
+    
     private var apiKey: String {
         return ProcessInfo.processInfo.environment["API_KEY"] ?? ""
     }
@@ -62,15 +65,30 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func refreshToken() async {
-        if token.isEmpty{
-            do {
-                _ = try await fetchToken()
-            } catch {
-                DispatchQueue.main.async {
-                    self.tokenFetchFailed = true
-                }
+    func refreshToken() async -> Bool {
+        guard !isRefreshing else { return false }
+        isRefreshing = true
+        
+        if let lastTime = lastRefreshTime, Date().timeIntervalSince(lastTime) < 60 {
+            isRefreshing = false
+            return false
+        }
+        
+        //isLoading = true
+        //tokenFetchFailed = false
+        //defer { isLoading = false }
+        
+        do {
+            lastRefreshTime = Date()
+            _ = try await fetchToken()
+            isRefreshing = false
+            return true
+        } catch {
+            DispatchQueue.main.async {
+                self.tokenFetchFailed = true
             }
+            isRefreshing = false
+            return false
         }
     }
     

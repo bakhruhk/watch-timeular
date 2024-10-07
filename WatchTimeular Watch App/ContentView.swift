@@ -5,6 +5,7 @@
 //  Created by Harshit Bakhru on 2024-09-13.
 //
 
+import Charts
 import SwiftUI
 
 struct ContentView: View {
@@ -17,48 +18,50 @@ struct ContentView: View {
             NavigationView {
                 VStack {
                     if authViewModel.isLoading {
-                        ProgressView("Loading...")
+                        ProgressView("Loading activities...")
                             .padding()
                     }
                     else if authViewModel.tokenFetchFailed {
-                        VStack {
-                            Text("Failed to load activities. Please try again.")
-                                .foregroundColor(.red)
-                                .padding()
-                            
-                            Button(action: {
-                                Task {
-                                    await authViewModel.refreshToken()
+                        errorView(message: "Failed to load activities. Please try again.") {
+                            Task {
+                                authViewModel.resetState()
+                                let success = await authViewModel.refreshToken()
+                                if success {
+                                    await reloadActivities()
                                 }
-                            }) {
-                                Text("Retry")
-                                    .foregroundColor(.blue)
-                                    .padding()
                             }
                         }
                     }
                     else if !authViewModel.token.isEmpty {
-                        List {
-                            ForEach(activityViewModel.activities, id: \.id) { activity in
-                                NavigationLink(destination: ActivityDetailView(activity: activity)) {
-                                    HStack {
-                                        Text(activity.name).padding()
-                                        Spacer()
-                                        if let col = Color(hex: activity.color){
-                                            Rectangle()
-                                                .fill(col)
-                                                .frame(width: 20, height: 20)
-                                                .cornerRadius(3)
+                        if activityViewModel.isLoading{
+                            ProgressView("Fetching Activities...").padding()
+                        } else if activityViewModel.fetchFailed {
+                            errorView(message: "Failed to fetch activities. Please try again."){
+                                Task {
+                                    await reloadActivities()
+                                }
+                            }
+                        }
+                        else{
+                            List {
+                                ForEach(activityViewModel.activities, id: \.id) { activity in
+                                    NavigationLink(destination: ActivityDetailView(activity: activity)) {
+                                        HStack {
+                                            Text(activity.name).padding()
+                                            Spacer()
+                                            if let col = Color(hex: activity.color){
+                                                Rectangle()
+                                                    .fill(col)
+                                                    .frame(width: 20, height: 20)
+                                                    .cornerRadius(3)
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        .onAppear {
-                            Task{
-                                let success = await activityViewModel.fetchActivities(token: authViewModel.token)
-                                if !success {
-                                    authViewModel.token = ""
+                            .onAppear {
+                                Task {
+                                    await reloadActivities() // Fetch activities when list appears
                                 }
                             }
                         }
@@ -68,7 +71,10 @@ struct ContentView: View {
                             .onAppear {
                                 Task {
                                     authViewModel.resetState()
-                                    await authViewModel.refreshToken()
+                                    let success = await authViewModel.refreshToken()
+                                    if success {
+                                        await reloadActivities()
+                                    }
                                 }
                             }
                     }
@@ -84,6 +90,30 @@ struct ContentView: View {
                     Label("Total Time", systemImage: "clock")
                 }
                 .tag(1)
+        }
+    }
+    
+    func reloadActivities() async {
+        let success = await activityViewModel.fetchActivities(token: authViewModel.token)
+        if !success {
+            authViewModel.token = "" // Invalidate token on failure
+        }
+    }
+    
+    @ViewBuilder
+    func errorView(message: String, retryAction: @escaping () -> Void) -> some View {
+        VStack {
+            Text(message)
+                .foregroundColor(.red)
+                .padding()
+            
+            Button(action: {
+                retryAction()
+            }) {
+                Text("Retry")
+                    .foregroundColor(.blue)
+                    .padding()
+            }
         }
     }
 }
@@ -115,18 +145,36 @@ struct TotalTimeView: View {
             }
         }
         else if !authViewModel.token.isEmpty {
-            VStack{
-                Text("Time Tracked Today:")
-                Text(timeEntryViewModel.totalTimeToday)
-                    .onAppear {
+            TabView{
+                VStack{
+                    VStack{
+                        Label{
+                            Text(timeEntryViewModel.totalTimeToday)
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
+                        } icon: {}
+                        Label{
+                            Text("Logged Today")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                        } icon: {}
+                    } .onAppear {
                         Task {
+                            await retryBacklogEntries()
                             let success = await timeEntryViewModel.fetchTotalTime(token: authViewModel.token)
                             if !success {
                                 authViewModel.token = ""
                             }
                         }
                     }
-            }
+                    
+                    BarChartView(activityTimes: timeEntryViewModel.activityTimes)
+                        .padding()
+    
+                }
+                ActivityProgressView(activityTimes: timeEntryViewModel.activityTimes)
+            }.tabViewStyle(.carousel)
         }
         else {
             Text("Loading...")
@@ -138,8 +186,93 @@ struct TotalTimeView: View {
                 }
         }
     }
-}
     
+    func retryBacklogEntries() async {
+        var backlog = getBacklog()
+        guard !backlog.isEmpty else { return }
+
+        authViewModel.resetState()
+        await authViewModel.refreshToken()
+        let isTokenValid = !authViewModel.tokenFetchFailed
+
+        if isTokenValid {
+            for entry in backlog {
+                let success = await timeEntryViewModel.createTimeEntry(activityId: entry.activityId, startedAt: entry.startedAt, stoppedAt: entry.stoppedAt, note: entry.note, token: authViewModel.token)
+                if success {
+                    backlog.removeAll { $0.startedAt == entry.startedAt && $0.stoppedAt == entry.stoppedAt }
+                }
+            }
+            saveBacklog(backlog)
+        }
+    }
+}
+
+struct ActivityProgressView: View {
+    let activityTimes: [String: ActivityTime]
+    
+    var body: some View {
+        List {
+            ForEach(Array(activityTimes.keys), id: \.self) { activity in
+                if let activityTime = activityTimes[activity] {
+                    HStack {
+                        Text(activity)
+                        Spacer()
+                        Text(formattedTimeString(from: activityTime.totalTime))
+                            .foregroundColor(Color(hex: activityTime.color))
+                    }
+                }
+            }
+        }
+        .navigationTitle("Activity List")
+    }
+
+    func formattedTimeString(from seconds: Double) -> String {
+        let minutes = seconds / 60.0
+        let hours = Int(minutes / 60.0)
+        let remainingMinutes = Int(minutes.truncatingRemainder(dividingBy: 60.0))
+
+        if hours > 0 {
+            return "\(hours)h \(remainingMinutes)m"
+        } else {
+            return "\(remainingMinutes)m"
+        }
+    }
+}
+
+struct BarChartView: View {
+    let activityTimes: [String: ActivityTime]
+
+    var body: some View {
+        let totalTime = activityTimes.values.reduce(0) { $0 + $1.totalTime }
+        
+        if totalTime > 0 {
+            VStack {
+                Chart {
+                    ForEach(Array(activityTimes.keys), id: \.self) { activity in
+                        if let activityTime = activityTimes[activity] {
+                            BarMark(
+                                x: .value("Minutes", activityTime.totalTime / 60)
+                                //y: .value("Activity", activity)
+                            )
+                            .foregroundStyle(Color(hex: activityTime.color) ?? Color.gray)
+                        }
+                    }
+                }
+                .frame(height: 75)
+                .chartXAxis {
+                    AxisMarks {
+                        AxisValueLabel()
+                            .font(.system(size: 8, weight: .bold))
+                    }
+                }
+            }
+            .padding()
+        } else {
+            Text("No Data")
+        }
+    }
+}
+ 
 struct ActivityDetailView: View {
     let activity: Activity
     @State private var active: Bool = false
@@ -202,13 +335,19 @@ struct ActivityDetailView: View {
                 await authViewModel.refreshToken()
                 let isTokenValid = !authViewModel.tokenFetchFailed
                 
+                let failedEntry = FailedTimeEntry(activityId: activity.id, startedAt: startTime, stoppedAt: Date(), note: "")
+                
                 if isTokenValid {
-                    await timeEntryViewModel.createTimeEntry(activityId: activity.id, startedAt: startTime, stoppedAt: Date(), note: "", token: authViewModel.token)
+                    let success = await timeEntryViewModel.createTimeEntry(activityId: activity.id, startedAt: startTime, stoppedAt: Date(), note: "", token: authViewModel.token)
+                    if !success{
+                        addToBacklog(failedEntry)
+                    }
                     let updatedTotalTimeSuccess = await timeEntryViewModel.fetchTotalTime(token: authViewModel.token)
                     if !updatedTotalTimeSuccess{
                         print("Failed to update total time after logging entry.")
                     }
                 } else {
+                    addToBacklog(failedEntry)
                     print("Failed to refresh token. Cannot create time entry.")
                 }
             }
@@ -231,6 +370,7 @@ struct ActivityDetailView: View {
     }
     
 }
+
 
 extension Color {
     init?(hex: String) {

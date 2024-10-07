@@ -9,19 +9,18 @@ import Foundation
 
 class ActivityViewModel: ObservableObject {
     @Published var activities: [Activity] = []
+    @Published var isLoading: Bool = false
+    @Published var fetchFailed: Bool = false
     
     private let cacheKey = "cachedActivities"
     private let lastFetchKey = "lastFetchTime"
     private let cacheExpiration: TimeInterval = 60 * 60
     
     func fetchActivities(token: String) async -> Bool {
-        
         if let cachedActivities = loadActivitiesFromCache(),
            let lastFetch = UserDefaults.standard.object(forKey: lastFetchKey) as? Date,
            Date().timeIntervalSince(lastFetch) < cacheExpiration {
-
             DispatchQueue.main.async {
-                print("here!")
                 self.activities = cachedActivities
             }
             return true
